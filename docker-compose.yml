@@ -1,0 +1,35 @@
+services:
+  db:
+    image: postgres:18.4
+    container_name: foxtail-microfiche-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-foxtail_microfiche}
+      POSTGRES_USER: ${POSTGRES_USER:-foxtail}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me-local-only}
+    volumes:
+      - microfiche_pgdata:/var/lib/postgresql
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-foxtail} -d ${POSTGRES_DB:-foxtail_microfiche}"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    build:
+      context: ./apps/api
+    container_name: foxtail-microfiche-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: ${DATABASE_URL:-postgresql+asyncpg://foxtail:change-me-local-only@db:5432/foxtail_microfiche}
+      API_HOST: 0.0.0.0
+      API_PORT: 8787
+    ports:
+      - "127.0.0.1:8787:8787"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  microfiche_pgdata:

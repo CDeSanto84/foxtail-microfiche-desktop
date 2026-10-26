@@ -1,0 +1,46 @@
+# Node
+node_modules/
+dist/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Environment / local state
+.env
+.env.*
+!.env.example
+.DS_Store
+
+# App data
+.local-data/
+apps/desktop/node_modules/
+.vite/
+*.pyc
+
+# Local credentials, user records, rollback files, and dependencies
+.env
+.env.*
+!.env.example
+*.bak*
+*.log
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+node_modules/
+.local-data/
+.local/
+state/
+work/
+backups/
+.backups/
+.DS_Store
+
+dev-fixtures/
+
+node_modules
+**/node_modules
