@@ -2,6 +2,8 @@
 
 # Foxtail Microfiche
 
+[![Checks](https://github.com/CDeSanto84/foxtail-microfiche-desktop/actions/workflows/checks.yml/badge.svg)](https://github.com/CDeSanto84/foxtail-microfiche-desktop/actions/workflows/checks.yml)
+
 **A desktop research room for historical newspapers.**
 
 Microfiche combines live archive search, a microfiche-inspired reader, and a
